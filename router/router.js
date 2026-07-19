@@ -3,7 +3,7 @@ import { renderChat } from "../src/views/chat.js";
 import { renderAbout } from "../src/views/about.js";
 import { renderNotFound } from "../src/views/noFound.js";
 
-const router = {
+const routes = {
     '/': renderHome,
     '/chat': renderChat,
     '/about': renderAbout,
@@ -11,7 +11,7 @@ const router = {
 
 export function router(){
     const path = window.location.pathname;
-    const renderView = router[path];
+    const renderView = routes[path];
 
     console.log('Routing to:', path);
 
