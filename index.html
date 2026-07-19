@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+        
+    <header>
+        <h1>ChatFlow</h1>
+        <!-- data-link marca estos como navegación interna de la SPA -->
+        <nav>
+        <a href="/" data-link>Home</a>
+        <a href="/chat" data-link>Chat</a>
+        <a href="/about" data-link>About</a>
+        </nav>
+    </header>
+
+    <!-- Este es el único contenedor que JavaScript va a reescribir -->
+    <main id="app"></main>
+
+    <!-- Orden importante: views y router antes de main -->
+    <!--   <script src="/views.js"></script>
+    <script src="router/router.js"></script> -->
+
+    <!-- module permite la estructura del import y export -->
+    <script src="./main.js" type="module"></script>
+
+</body>
+</html>
