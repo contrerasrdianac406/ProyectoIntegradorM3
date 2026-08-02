@@ -1,4 +1,15 @@
 /* css/styles.css */
+/* ===== 01. BASE MÓVIL ===== */
+
+/* Reset y box-sizing robusto — esto va siempre primero en cualquier proyecto */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: system-ui, sans-serif;
     margin: 0;
@@ -15,7 +26,7 @@ header {
 }
 
 nav a {
-    color: #8ab4f8;
+    color: d64012;
     margin-left: 1.5rem;
     text-decoration: none;
 }
