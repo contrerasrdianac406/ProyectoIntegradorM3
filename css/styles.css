@@ -326,3 +326,107 @@ a {
     text-align: center;
     font-size: 1.5rem;
 }
+
+/* ===== 08. MEDIA QUERIES ===== */
+
+/* --- TABLET (768px o más) --- */
+@media screen and (min-width: 768px) {
+
+    /* Header */
+    .header {
+        padding: 1.25rem 3rem;
+    }
+
+    .header__title {
+        font-size: 1.25rem;
+    }
+
+    .nav a {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+
+    /* Home */
+    .sectionHome {
+        background-size: contain;
+        padding: 2rem 4rem;
+    }
+
+    .tituloHome {
+        font-size: 3rem;
+        margin-top: 15vh;
+        margin-left: 5vw;
+        background-image: linear-gradient(50deg, #13cded, #7f00ff);
+    }
+
+    .sectionHome p {
+        font-size: 1.25rem;
+        margin-left: 5vw;
+    }
+
+    /* About */
+    .seccionAbout {
+        background-size: contain;
+        padding: 2rem 4rem;
+    }
+
+    .tituloAbout {
+        font-size: 3rem;
+        margin-top: 15vh;
+        margin-left: 5vw;
+        background-image: linear-gradient(50deg, #5e4fad, #E1B8FD);
+    }
+
+    .parrafoAbout {
+        font-size: 1.25rem;
+        margin-left: 5vw;
+    }
+
+    .botonAbout {
+        margin-left: 5vw;
+        font-size: 1.1rem;
+    }
+
+    /* Chat */
+    .chatApp {
+        width: 80vw;
+        max-width: 720px;
+        margin: 2rem auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .message {
+        max-width: 70%;
+    }
+
+    .message--character,
+    .message--user {
+        font-size: 0.95rem;
+    }
+
+    .chatComposer {
+        margin-top: auto;
+        /* Anula el margin-top de 42vh para fijar el input abajo */
+        padding: 0.75rem 1rem;
+    }
+
+    .chatInput {
+        font-size: 0.95rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .chatSend {
+        font-size: 0.95rem;
+    }
+
+    /* 404 */
+    .nofoundTitulo {
+        font-size: 3.5rem;
+        margin-top: 10vh;
+    }
+
+    .nofoundParrafo {
+        font-size: 2rem;
+    }
+}
