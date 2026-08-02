@@ -430,3 +430,80 @@ a {
         font-size: 2rem;
     }
 }
+
+/* --- DESKTOP (1024px o más) --- */
+@media screen and (min-width: 1024px) {
+
+    /* Header */
+    .header {
+        padding: 1.25rem 6rem;
+    }
+
+    .header__title {
+        font-size: 1.5rem;
+    }
+
+    .nav a {
+        font-size: 1rem;
+    }
+
+    /* Home */
+    .sectionHome {
+        padding: 3rem 8rem;
+    }
+
+    .tituloHome {
+        font-size: 3.75rem;
+        margin-top: 12vh;
+        margin-left: 0.02vw;
+        background-image: linear-gradient(50deg, #ff007f, #7f00ff);
+    }
+
+    .sectionHome p {
+        font-size: 1.4rem;
+        margin-left: 1vw;
+    }
+
+    /* About */
+    .seccionAbout {
+        padding: 3rem 8rem;
+    }
+
+    .tituloAbout {
+        font-size: 3.75rem;
+        margin-top: 12vh;
+        margin-left: 0.2vw;
+        background-image: linear-gradient(50deg, #ff007f, #7f00ff);
+    }
+
+    .parrafoAbout {
+        font-size: 1.4rem;
+        margin-left: 0.2vw;
+    }
+
+    .botonAbout {
+        margin-left: 8vw;
+        font-size: 1.15rem;
+        padding: 0.85rem 2.25rem;
+    }
+
+    /* Chat */
+    .chatApp {
+        width: 60vw;
+        max-width: 900px;
+        height: 80vh;
+    }
+
+    .message {
+        max-width: 60%;
+    }
+
+    /* 404 */
+    .nofoundTitulo {
+        font-size: 4.5rem;
+    }
+
+    .nofoundParrafo {
+        font-size: 2.25rem;
+    }
+}
