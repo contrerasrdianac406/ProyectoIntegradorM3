@@ -308,17 +308,30 @@ a {
 }
 
 .nofound {
-    background-image: url(../img/noFound.jpg);
     width: 100vw;
-    height: 100vh;
+    height: 87vh;
+    background-image: url('../img/noFound.jpg');
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
+    background-color: #F7F6F5;
+    overflow-y: hidden;
 }
 
 .nofoundTitulo {
     color: rgba(166, 37, 132, 0.979);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.0rem;
+    /* Color de fondo normal de la caja */
+    background-color: #f9f2f2;
+    padding: 1rem;
+    /* Creación del degradado para las letras */
+    background-image: linear-gradient(50deg, #090d54, #ff007f);
+    /* Aplica el degradado SOLO a las letras */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* Sombra o transparencia para revelar el degradado */
+    color: transparent;
 }
 
 .nofoundParrafo {
@@ -422,12 +435,22 @@ a {
 
     /* 404 */
     .nofoundTitulo {
-        font-size: 3.5rem;
+        font-size: 2.0rem;
         margin-top: 10vh;
+        /* Color de fondo normal de la caja */
+        background-color: #f9f2f2;
+        padding: 1rem;
+        /* Creación del degradado para las letras */
+        background-image: linear-gradient(50deg, #25c3f3, #f00cc6);
+        /* Aplica el degradado SOLO a las letras */
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* Sombra o transparencia para revelar el degradado */
+        color: transparent;
     }
 
     .nofoundParrafo {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -500,10 +523,20 @@ a {
 
     /* 404 */
     .nofoundTitulo {
-        font-size: 4.5rem;
+        font-size: 2.8rem;
+        /* Color de fondo normal de la caja */
+        background-color: #f9f2f2;
+        padding: 1rem;
+        /* Creación del degradado para las letras */
+        background-image: linear-gradient(50deg, #8b06e3, #f00cc6);
+        /* Aplica el degradado SOLO a las letras */
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* Sombra o transparencia para revelar el degradado */
+        color: transparent;
     }
 
     .nofoundParrafo {
-        font-size: 2.25rem;
+        font-size: 2rem;
     }
 }
