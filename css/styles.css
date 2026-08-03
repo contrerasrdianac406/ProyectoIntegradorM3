@@ -12,8 +12,8 @@
 /* ===== 02. BASE MÓVIL ===== */
 body {
     font-family: system-ui, sans-serif;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     color: #e8e8e8;
     background-color: #F7F6F5;
     line-height: 1.5;
@@ -26,14 +26,13 @@ a {
     color: inherit;
 }
 
-
 /* ===== 03. HEADER - MÓVIL ===== */
 .header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: 1rem;
     background: #F59F9E;
     backdrop-filter: blur(8px);
     position: sticky;
@@ -65,40 +64,30 @@ a {
     text-decoration: none;
 }
 
-/* ===== 04. MAIN ===== */
-
-
-/* ===== 05. HOME ===== */
+/* ===== 04. HOME ===== */
 .sectionHome {
-    width: 100vw;
-    height: 85vh;
-    padding: 1rem 1rem;
+    width: 100%;
+    min-height: 85vh;
+    padding: 1rem;
     background-image: url('../img/KarolG.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     background-color: #F7F6F5;
-    overflow-y: hidden;
-
 }
 
 .tituloHome {
     font-size: 2.0rem;
     color: #470d70;
     text-align: left;
-    margin-top: 25vh;
+    margin-top: 15vh;
     margin-left: 2vw;
-    /* Color de fondo normal de la caja */
     background-color: #f9f2f2;
     padding: 1rem;
-    /* Creación del degradado para las letras */
     background-image: linear-gradient(50deg, #090d54, #ff007f);
-    /* Aplica el degradado SOLO a las letras */
     -webkit-background-clip: text;
     background-clip: text;
-    /* Sombra o transparencia para revelar el degradado */
     color: transparent;
-
 }
 
 .sectionHome p {
@@ -108,43 +97,35 @@ a {
     margin-left: 3vw;
 }
 
-/*cotenedor para evitar el scroll*/
 .sectionHome> :not(.tituloHome):not(p) {
     margin: 0 auto;
     width: fit-content;
 }
 
-/* ===== 06. ABOUT ===== */
+/* ===== 05. ABOUT ===== */
 .seccionAbout {
-    width: 100vw;
-    height: 85vh;
-    padding: 1rem 1rem;
+    width: 100%;
+    min-height: 85vh;
+    padding: 1rem;
     background-image: url('../img/KarolG.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     background-color: #F7F6F5;
-    overflow-y: hidden;
 }
-
 
 .tituloAbout {
     font-size: 2.0rem;
     color: #470d70;
     text-align: left;
-    margin-top: 25vh;
+    margin-top: 15vh;
     margin-left: 3vw;
-    /* Color de fondo normal de la caja */
     background-color: #f9f2f2;
     padding: 1rem;
-    /* Creación del degradado para las letras */
     background-image: linear-gradient(50deg, #090d54, #ff007f);
-    /* Aplica el degradado SOLO a las letras */
     -webkit-background-clip: text;
     background-clip: text;
-    /* Sombra o transparencia para revelar el degradado */
     color: transparent;
-
 }
 
 .parrafoAbout {
@@ -160,31 +141,24 @@ a {
 }
 
 .botonAbout {
-    margin-left: 10vw;
-    margin-bottom: 1.5rem;
-    /* Estilos visuales: Degradado Bichota (Rosa a Violeta) */
+    margin-left: 35vw;
+    margin-top: 33vw;
     background: linear-gradient(135deg, #FF758C 0%, #FF7EB3 50%, #C6AAFA 100%);
     color: #FFFFFF;
     font-family: system-ui, sans-serif;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-
-    /* Formas y Bordes */
-    padding: 0.75rem 1.75rem;
+    padding: 0.55rem 1.2rem;
     border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 50px;
-    /* Bordes redondeados integrales */
     cursor: pointer;
-
-    /* Sombra y Efecto de Brillo/Glow */
     box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
     transition: all 0.3s ease;
     outline: none;
 }
 
-/* Efectos al pasar el cursor (Hover) */
 .botonAbout:hover {
     background: linear-gradient(135deg, #FF527B 0%, #FF758C 50%, #B770CD 100%);
     transform: translateY(-2px);
@@ -192,23 +166,21 @@ a {
     border-color: #FFFFFF;
 }
 
-/* Efecto al presionar (Active) */
 .botonAbout:active {
     transform: translateY(1px);
     box-shadow: 0 2px 10px rgba(255, 117, 140, 0.3);
 }
 
-/* ===== 07. CHAT - MÓVIL ===== */
+/* ===== 06. CHAT - MÓVIL ===== */
 .chatApp {
-    width: 100vw;
+    width: 100%;
     height: 90vh;
-    padding: 1rem 1rem;
+    padding: 1rem;
     background-image: url('../img/KarolG.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     background-color: #F7F6F5;
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -223,7 +195,6 @@ a {
     gap: 0.75rem;
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
-
 }
 
 .message {
@@ -242,7 +213,6 @@ a {
     border-color: #CBD5E1;
     border-bottom-left-radius: 4px;
     font-size: 0.8rem;
-
 }
 
 .message--user {
@@ -258,7 +228,8 @@ a {
     flex-shrink: 0;
     display: flex;
     width: 100%;
-    margin-top: 42vh;
+    margin-top: auto;
+    /* Empuja el input al fondo de la caja dinámicamente */
     padding: 0.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     background: #C6AAFA;
@@ -307,30 +278,26 @@ a {
     transform: scale(0.96);
 }
 
+/* ===== 07. 404 NO FOUND ===== */
 .nofound {
-    width: 100vw;
-    height: 87vh;
+    width: 100%;
+    min-height: 87vh;
     background-image: url('../img/noFound.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-color: #F7F6F5;
-    overflow-y: hidden;
 }
 
 .nofoundTitulo {
     color: rgba(166, 37, 132, 0.979);
     text-align: center;
     font-size: 2.0rem;
-    /* Color de fondo normal de la caja */
     background-color: #f9f2f2;
     padding: 1rem;
-    /* Creación del degradado para las letras */
     background-image: linear-gradient(50deg, #090d54, #ff007f);
-    /* Aplica el degradado SOLO a las letras */
     -webkit-background-clip: text;
     background-clip: text;
-    /* Sombra o transparencia para revelar el degradado */
     color: transparent;
 }
 
@@ -396,8 +363,9 @@ a {
     }
 
     .botonAbout {
-        margin-left: 5vw;
         font-size: 1.1rem;
+        margin-left: 35vw;
+        margin-top: 3vw;
     }
 
     /* Chat */
