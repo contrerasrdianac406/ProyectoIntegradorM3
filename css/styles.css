@@ -366,9 +366,9 @@ a {
     }
 
     .tituloHome {
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin-top: 15vh;
-        margin-left: 5vw;
+        margin-left: 3vw;
         background-image: linear-gradient(50deg, #13cded, #7f00ff);
     }
 
@@ -384,7 +384,7 @@ a {
     }
 
     .tituloAbout {
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin-top: 15vh;
         margin-left: 5vw;
         background-image: linear-gradient(50deg, #5e4fad, #E1B8FD);
@@ -476,7 +476,7 @@ a {
     }
 
     .tituloHome {
-        font-size: 3.75rem;
+        font-size: 3rem;
         margin-top: 12vh;
         margin-left: 0.02vw;
         background-image: linear-gradient(50deg, #ff007f, #7f00ff);
@@ -493,7 +493,7 @@ a {
     }
 
     .tituloAbout {
-        font-size: 3.75rem;
+        font-size: 3rem;
         margin-top: 12vh;
         margin-left: 0.2vw;
         background-image: linear-gradient(50deg, #ff007f, #7f00ff);
