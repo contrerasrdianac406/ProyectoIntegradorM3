@@ -370,9 +370,8 @@ a {
 
     /* Chat */
     .chatApp {
-        width: 80vw;
         max-width: 720px;
-        margin: 2rem auto;
+        margin: 1.5rem auto;
         border-radius: 12px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
@@ -402,23 +401,26 @@ a {
     }
 
     /* 404 */
-    .nofoundTitulo {
-        font-size: 2.0rem;
-        margin-top: 10vh;
-        /* Color de fondo normal de la caja */
-        background-color: #f9f2f2;
+    .nofound {
+        width: 100vw;
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         padding: 1rem;
-        /* Creación del degradado para las letras */
-        background-image: linear-gradient(50deg, #25c3f3, #f00cc6);
-        /* Aplica el degradado SOLO a las letras */
-        -webkit-background-clip: text;
-        background-clip: text;
-        /* Sombra o transparencia para revelar el degradado */
-        color: transparent;
+    }
+
+    .nofoundTitulo {
+        font-size: 4rem;
+        padding: 1.5rem 2.5rem;
+        border-radius: 12px;
     }
 
     .nofoundParrafo {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
+        /*         margin-top: 1.25rem; */
+        max-width: 70%;
     }
 }
 
