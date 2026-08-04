@@ -1,0 +1,24 @@
+{
+  "name": "proyectointegradorm3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/contrerasrdianac406/ProyectoIntegradorM3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/contrerasrdianac406/ProyectoIntegradorM3/issues"
+  },
+  "homepage": "https://github.com/contrerasrdianac406/ProyectoIntegradorM3#readme",
+  "dependencies": {
+    "all": "^0.0.0"
+  }
+}

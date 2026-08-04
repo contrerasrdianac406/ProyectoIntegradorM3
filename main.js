@@ -1,4 +1,4 @@
-import { navigateTo, router } from "./router/router.js";
+import { navigateTo, router } from "./src/router/router.js";
 
 document.addEventListener("click", (event) => {
     /* Valida si el link corresponde a los que he creado */
