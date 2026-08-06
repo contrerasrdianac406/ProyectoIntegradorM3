@@ -7,26 +7,30 @@ function renderPersonaOptions() {
     .join("");
 }
 
-export function renderChat() 
-{ const app = document.getElementById('app'); app.innerHTML = `
-    <section class="class="ai-chat-section">
-        <h2>💬 Mi chat</h2>
+export function renderChat() {
+    const app = document.getElementById("app");
+
+    app.innerHTML = `
+        <section class="ai-chat-section">
         <div class="ai-chat-header">
-        <select id="persona-select">
-        ${renderPersonaOptions()}
-        </select>
+            <h3>   🤖 Asistente Chat</h3>
+            <select id="persona-select">
+            ${renderPersonaOptions()}
+            </select>
         </div>
 
         <div class="chat-container">
-        <div id="chat-messages" class="chat-messages"></div>
-        <p id="status" class="chat-status"></p>
-        <div class="chatComposer">
-            <input id="chat-input"class="chatInput" type="text" placeholder="Escribe un mensaje…"/>
-            <button id="send-btn class="chatSend" type="submit">Enviar</button>
-        </div>
+            <div id="chat-messages" class="chat-messages"></div>
+            <p id="status" class="chat-status"></p>
+            <div class="chat-input-area">
+            <input id="chat-input" type="text" placeholder="Escribí tu mensaje..." />
+            <button id="send-btn">Enviar</button>
+            </div>
         </div>
 
         <p id="token-usage" class="token-usage"></p>
-    </section>
-    ` ; 
+        </section>
+    `;
+
+    initChatEngine();
 }
