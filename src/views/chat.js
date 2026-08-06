@@ -2,7 +2,7 @@ import { initChatEngine } from "../engine/chatEngine.js";
 import { PERSONAS } from "../services/prompts.js";
 
 function renderPersonaOptions() {
-  return Object.entries(PERSONAS)
+    return Object.entries(PERSONAS)
     .map(([key, persona]) => `<option value="${key}">${persona.label}</option>`)
     .join("");
 }
