@@ -1,4 +1,16 @@
+//? Simulación de una cuota -- version free
 
+const SESSION_TOKEN_LIMIT = 4000; 
+
+let sessionPromptTokens = 0;
+let sessionCandidateTokens = 0;
+let requestCount = 0;
+
+export function recordUsage(promptTokenCount, candidatesTokenCount) {
+  sessionPromptTokens += promptTokenCount;
+  sessionCandidateTokens += candidatesTokenCount;
+  requestCount++;
+}
 
 export function recordRealUsage(raw){
   const usage = raw?.usageMetadata;
