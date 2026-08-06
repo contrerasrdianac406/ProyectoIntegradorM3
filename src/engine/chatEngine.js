@@ -150,7 +150,7 @@ export function initChatEngine() {
       setSystemInstruction(e.target.value)
     });
   }
-  contents.push({ role: "model", parts: [{ text:"Entraste buscando respuestas a un mundo que no comprendes. Cuidado con lo que deseas encontrar." }] })
+  contents.push({ role: "model", parts: [{ text:"¡Hola, mor! Qué chimba tenerte por aquí en mi chat; contame qué duda tenés o de qué querés que hablemos hoy, que aquí estamos listos pa' pasarla bueno." }] })
   renderMessages(contents, PERSONAS[currentInstruction].label);
   updateTokenUsage(getSessionUsage());
   lockIfQuotaExceeded()// por si la cuota ya estaba agotada de antes en esta misma sesión de página
