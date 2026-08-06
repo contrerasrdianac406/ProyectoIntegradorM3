@@ -1,19 +1,25 @@
 export function renderChat() 
 { const app = document.getElementById('app'); app.innerHTML = 
-    `<div class="chatApp">
-        <seccion class="chatMessages" aria-label="Mensajes">
-            <div class="message message--character">Hola, ¿en qué te ayudo?</div>
-            <div class="message message--user">Quiero platicar contigo.</div>
-            <div class="message message--character">Perfecto, empecemos con Flexbox. Es ideal para layouts de una dimensión?</div>
-        </seccion>
+    `
+    
+    <section class="class="ai-chat-section">
+        <h2>💬 Mi chat</h2>
+        <div class="ai-chat-header">
+        <select id="persona-select">
 
-        <form class="chatComposer">
-            <input 
-                class="chatInput" 
-                type="text" 
-                placeholder="Escribe un mensaje…"
-                aria-label="Escribe tu mensaje"
-            />
-            <button class="chatSend" type="submit">Enviar</button>
-        </form>
-    </div>`; }
+        </select>
+        </div>
+
+        <div class="chat-container">
+        <div id="chat-messages" class="chat-messages"></div>
+        <p id="status" class="chat-status"></p>
+        <div class="chatComposer">
+            <input id="chat-input"class="chatInput" type="text" placeholder="Escribe un mensaje…"/>
+            <button id="send-btn class="chatSend" type="submit">Enviar</button>
+        </div>
+        </div>
+
+        <p id="token-usage" class="token-usage"></p>
+    </section>
+    ` ; 
+}

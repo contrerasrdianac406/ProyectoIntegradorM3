@@ -171,10 +171,57 @@ a {
     box-shadow: 0 2px 10px rgba(255, 117, 140, 0.3);
 }
 
-/* ===== 06. CHAT - MÓVIL ===== */
-.chatApp {
+/* ==========================================
+   06. CHAT - ESTILOS BASE (MOBILE FIRST)
+   ========================================== */
+
+/* Lista de chats */
+.chat-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 2rem;
+}
+
+.chat-list li {
+    padding: 0.75rem 1rem;
+    background: #1a1d24;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+/* Sección e Encabezado del Chat */
+.ai-chat-section {
+    margin-top: 16px;
+}
+
+.ai-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+h2 {
+    margin: 0;
+    color: #b770cd;
+    font-size: 1.2rem;
+}
+
+.ai-chat-header select {
+    padding: 4px 6px;
+    border-radius: 8px;
+    border: 1px solid #2a2e38;
+    background: #C2A7F8;
+    color: #d284cf;
+    margin-left: auto;
+    /* Ajuste seguro para móviles sin romper el layout */
+}
+
+/* Contenedor Principal del Chat */
+.chat-container {
     width: 100%;
-    height: 90vh;
+    height: 60vh;
+    /* Se amplía ligeramente para mejor usabilidad móvil */
     padding: 1rem;
     background-image: url('../img/KarolG.jpg');
     background-repeat: no-repeat;
@@ -185,7 +232,8 @@ a {
     flex-direction: column;
 }
 
-.chatMessages {
+/* Áreas de Mensajes */
+.chat-messages {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
@@ -197,6 +245,7 @@ a {
     -webkit-overflow-scrolling: touch;
 }
 
+/* Burbujas de Mensaje */
 .message {
     max-width: 90%;
     padding: 0.65rem 0.85rem;
@@ -206,7 +255,7 @@ a {
     border: 1px solid transparent;
 }
 
-.message--character {
+.message--model {
     align-self: flex-start;
     background: #e1e4e9;
     color: #0F172A;
@@ -224,20 +273,89 @@ a {
     font-size: 0.8rem;
 }
 
+.message-role {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-bottom: 2px;
+}
+
+/* Indicador Animado "Escribiendo..." */
+.message--typing {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+    margin: 0;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e8e8e8;
+    opacity: 0.4;
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing-bounce {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    30% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
+
+/* Estado del Chat */
+.chat-status {
+    padding: 4px 20px;
+    font-size: 0.8rem;
+    color: #8a8f99;
+    min-height: 1.4rem;
+}
+
+.chat-status--retry {
+    color: #f5a623;
+}
+
+.chat-status--error {
+    color: #f87171;
+}
+
+/* Compositor / Input de Envío */
 .chatComposer {
     flex-shrink: 0;
     display: flex;
     width: 100%;
-    margin-top: auto;
-    /* Empuja el input al fondo de la caja dinámicamente */
+    margin-top: 48vh;
     padding: 0.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     background: #C6AAFA;
     align-items: center;
     justify-content: center;
+    gap: 0.2rem;
 }
 
-.chatInput {
+.chatComposer input {
     flex: 1;
     min-width: 0;
     padding: 0.40rem 0.60rem;
@@ -250,15 +368,15 @@ a {
     transition: border-color 0.2s;
 }
 
-.chatInput::placeholder {
+.chatComposer input::placeholder {
     color: rgba(255, 255, 255, 0.4);
 }
 
-.chatInput:focus {
+.chatComposer input:focus {
     border-color: #8ab4f8;
 }
 
-.chatSend {
+.chatComposer button {
     padding: 0.65rem 1.25rem;
     border: 0;
     border-radius: 2rem;
@@ -270,13 +388,37 @@ a {
     transition: background 0.2s, transform 0.1s;
 }
 
-.chatSend:hover {
+.chatComposer button:hover {
     background: #c41487;
 }
 
-.chatSend:active {
+.chatComposer button:active {
     transform: scale(0.96);
 }
+
+/* Uso de Tokens */
+.token-usage {
+    margin-top: 6vh;
+    margin-left: 2vh;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    color: #dde0e4;
+    border-radius: 6px;
+    background: #EE7BB3;
+    border: 1px solid #950469;
+    display: inline-block;
+}
+
+.token-usage--warning {
+    color: #f5a623;
+    border-color: #f5a623;
+}
+
+.token-usage--exhausted {
+    color: #f87171;
+    border-color: #f87171;
+}
+
 
 /* ===== 07. 404 NO FOUND ===== */
 .nofound {
@@ -307,206 +449,193 @@ a {
     font-size: 1.5rem;
 }
 
-/* ===== 08. MEDIA QUERIES ===== */
-
-/* --- TABLET (768px o más) --- */
+/* ==========================================
+   08. MEDIA QUERIES - TABLET (768px +)
+   ========================================== */
 @media screen and (min-width: 768px) {
 
-    /* Header */
+    /* HEADER */
     .header {
-        padding: 1.25rem 3rem;
+        padding: 1.2rem 2.5rem;
     }
 
     .header__title {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
     }
 
     .nav a {
         font-size: 0.9rem;
-        padding: 0.6rem 1rem;
+        padding: 0.6rem 1.2rem;
     }
 
-    /* Home */
+    /* HOME */
     .sectionHome {
-        background-size: contain;
         padding: 2rem 4rem;
+        background-size: contain;
     }
 
     .tituloHome {
-        font-size: 2.5rem;
-        margin-top: 15vh;
-        margin-left: 3vw;
-        background-image: linear-gradient(50deg, #13cded, #7f00ff);
+        font-size: 3rem;
+        margin-top: 10vh;
+        margin-left: 0;
+        max-width: 70%;
     }
 
     .sectionHome p {
-        font-size: 1.25rem;
-        margin-left: 5vw;
+        font-size: 1.2rem;
+        margin-left: 0;
+        max-width: 60%;
     }
 
-    /* About */
+    /* ABOUT */
     .seccionAbout {
-        background-size: contain;
         padding: 2rem 4rem;
     }
 
     .tituloAbout {
-        font-size: 2.5rem;
-        margin-top: 15vh;
-        margin-left: 5vw;
-        background-image: linear-gradient(50deg, #5e4fad, #E1B8FD);
+        font-size: 3rem;
+        margin-top: 10vh;
+        margin-left: 0;
+        max-width: 70%;
     }
 
     .parrafoAbout {
-        font-size: 1.25rem;
-        margin-left: 5vw;
+        font-size: 1.2rem;
+        margin-left: 0;
+        max-width: 65%;
     }
 
+    .contBotonAbout {
+        justify-content: flex-start;
+        margin-top: 2rem;
+    }
+
+    /* Ajuste responsivo para corregir descalce del botón */
     .botonAbout {
+        margin-left: 0;
+        margin-top: 0;
         font-size: 1.1rem;
-        margin-left: 35vw;
-        margin-top: 3vw;
+        padding: 0.75rem 1.8rem;
     }
 
-    /* Chat */
-    .chatApp {
-        max-width: 720px;
-        margin: 1.5rem auto;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    /* CHAT */
+    .chat-container {
+        max-width: 90vw;
+        height: 73vh;
+        margin: 2rem auto;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
     }
 
     .message {
         max-width: 70%;
+        font-size: 0.9rem;
     }
 
-    .message--character,
+    .message--model,
     .message--user {
         font-size: 0.95rem;
     }
 
     .chatComposer {
-        margin-top: auto;
-        /* Anula el margin-top de 42vh para fijar el input abajo */
-        padding: 0.75rem 1rem;
+        padding: 0.6rem 1rem;
+        margin-top: 50vh;
+        gap: 0.5rem;
     }
 
-    .chatInput {
+    .chatComposer input {
         font-size: 0.95rem;
         padding: 0.6rem 1rem;
     }
 
-    .chatSend {
-        font-size: 0.95rem;
+    .token-usage {
+        margin-top: 1vw;
+        margin-left: 2vh;
     }
 
-    /* 404 */
-    .nofound {
-        width: 100vw;
-        min-height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-    }
-
+    /* 404 NOT FOUND */
     .nofoundTitulo {
-        font-size: 4rem;
-        padding: 1.5rem 2.5rem;
-        border-radius: 12px;
+        font-size: 3rem;
+        margin-top: 5vh;
     }
 
     .nofoundParrafo {
-        font-size: 2.2rem;
-        /*         margin-top: 1.25rem; */
-        max-width: 70%;
+        font-size: 1.8rem;
     }
 }
 
-/* --- DESKTOP (1024px o más) --- */
+/* ==========================================
+   09. MEDIA QUERIES - DESKTOP (1024px +)
+   ========================================== */
 @media screen and (min-width: 1024px) {
 
-    /* Header */
+    /* HEADER */
     .header {
-        padding: 1.25rem 6rem;
+        padding: 1.2rem 5rem;
     }
 
     .header__title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .nav a {
         font-size: 1rem;
     }
 
-    /* Home */
+    /* HOME */
     .sectionHome {
-        padding: 3rem 8rem;
+        padding: 3rem 6rem;
     }
 
     .tituloHome {
-        font-size: 3rem;
+        font-size: 3.8rem;
         margin-top: 12vh;
-        margin-left: 0.02vw;
-        background-image: linear-gradient(50deg, #ff007f, #7f00ff);
+        max-width: 50%;
     }
 
     .sectionHome p {
-        font-size: 1.4rem;
-        margin-left: 1vw;
+        font-size: 1.35rem;
+        max-width: 45%;
     }
 
-    /* About */
+    /* ABOUT */
     .seccionAbout {
-        padding: 3rem 8rem;
+        padding: 3rem 6rem;
     }
 
     .tituloAbout {
-        font-size: 3rem;
+        font-size: 3.8rem;
         margin-top: 12vh;
-        margin-left: 0.2vw;
-        background-image: linear-gradient(50deg, #ff007f, #7f00ff);
+        max-width: 50%;
     }
 
     .parrafoAbout {
-        font-size: 1.4rem;
-        margin-left: 0.2vw;
+        font-size: 1.35rem;
+        max-width: 50%;
     }
 
-    .botonAbout {
-        margin-left: 8vw;
-        font-size: 1.15rem;
-        padding: 0.85rem 2.25rem;
+    .contBotonAbout {
+        margin-top: 2.5rem;
     }
 
-    /* Chat */
-    .chatApp {
-        width: 60vw;
-        max-width: 900px;
-        height: 80vh;
+    /* CHAT */
+    .chat-container {
+        max-width: 850px;
+        height: 67vh;
+        margin: 1.5rem auto;
     }
 
     .message {
-        max-width: 60%;
+        max-width: 55%;
     }
 
-    /* 404 */
+    /* 404 NOT FOUND */
     .nofoundTitulo {
-        font-size: 2.8rem;
-        /* Color de fondo normal de la caja */
-        background-color: #f9f2f2;
-        padding: 1rem;
-        /* Creación del degradado para las letras */
-        background-image: linear-gradient(50deg, #8b06e3, #f00cc6);
-        /* Aplica el degradado SOLO a las letras */
-        -webkit-background-clip: text;
-        background-clip: text;
-        /* Sombra o transparencia para revelar el degradado */
-        color: transparent;
+        font-size: 4rem;
     }
 
     .nofoundParrafo {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 }
