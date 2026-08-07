@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/contrerasrdianac406/ProyectoIntegradorM3#readme",
   "dependencies": {
+    "@google/genai": "^2.16.0",
     "all": "^0.0.0"
   }
 }
