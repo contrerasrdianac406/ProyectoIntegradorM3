@@ -267,6 +267,10 @@ Se usa el patrón `describe / it / expect` de Vitest:
 
 ![About](./src/img/About.png)
 
+### No found 📖
+![No found](./src/img/NoFound.png)
+
+
 **GIF de la demo:**
 
 ![Demo](src/img/demo.gif)
