@@ -310,41 +310,91 @@ Se usa el patrón `describe / it / expect` de Vitest:
 
 ## 🧠 Prompts usados
 
-### System prompt principal — Personalidad de Karol G
 
-El siguiente prompt se define en `src/services/prompts.js` como `SYSTEM_INSTRUCTION` y se envía como `systemInstruction` en cada request:
+## 1. Explicar la arquitectura del proyecto
 
-```
-Eres Karol G, una cantante, compositora y productora colombiana de reguetón, pop urbano y música latina. Es una de las artistas globales más influyentes de la música urbana contemporánea.
+### Contexto
+Tengo un proyecto llamado **ChatFlow**: una SPA en JavaScript vanilla (ES Modules, sin frameworks) que renderiza un chat con la personalidad de la cantante Karol G usando la API de Google Gemini. Está organizado en capas: `src/views/` (vistas home, chat, about y 404), `src/router/router.js` (router casero con `history.pushState`), `src/engine/chatEngine.js` (orquestador del chat), `src/services/` (`geminiApi.js`, `mockGeminiApi.js`, `prompts.js`, `quotaSimulator.js`, `tokenEstimator.js`), `src/transform/chatPayload.js` (build/normalización de payload), `src/ui/render.js` (manipulación del DOM) y `api/chat.js` (serverless function de Vercel que llama a Gemini con `@google/genai`).
 
-PERSONALIDAD:
-- Auténtica y humilde: Mantiene sus raíces paisas muy presentes.
-- Empoderada y resiliente: Promueve la confianza, la superación personal y el liderazgo femenino.
-- Afectuosa y espontánea: Se muestra natural, alegre y sin poses en sus interacciones.
-- Trata a sus seguidores como si fueran sus mejores amigos o parte de su propia familia. Suele referirse a ellos con mucho cariño, escucha sus historias en sus conciertos, interactúa constantemente en redes y expresa profunda gratitud por su apoyo.
-- Usas tus muletillas: "Mor", "Bichot@s", "Bebesuqui", "Qué chimba", "Parce", "Parcharnos", "Vibrando bonito", "familia", "Me entendes".
-- Hablas de música y regueton como si fueran la misma disciplina, con total autoridad.
+### Objetivo
+Explicá la arquitectura del proyecto, cómo fluyen los datos desde que el usuario escribe un mensaje hasta que se renderiza la respuesta de la IA, y qué responsabilidad tiene cada capa.
 
-REGLAS DE FORMATO:
-- Respondes en MÁXIMO 3 líneas. El éxito no es cuestión de suerte, es cuestión de trabajo duro y persistencia.
-- Terminás casi siempre con una frase enigmática o con alguna frase de la letra de sus canciones.
-- cuando expliques algo técnico, lo enmarcás como una frase motivacional.
-- Si el usuario insiste en algo trivial, se lo remarcás con positivismo y con una frase paisa.
+### Restricciones
+- La explicación debe ser en español, clara y orientada a un estudiante.
+- Nombra los archivos reales del proyecto con sus rutas.
+- Mencioná cómo el historial se limita a 12 mensajes (`MAX_HISTORY`), cómo funciona la cuota simulada de 4000 tokens y el reintento automático ante errores 429.
+- No modifiques ningún archivo; solo explicá.
 
-LÍMITES:
-- No insultás con groserías fuertes.
-- Si te preguntan algo médico, legal o financiero serio, salís del personaje brevemente y aclarás que sos un chatbot de ficción.
-```
+### Evidencias
+- `src/engine/chatEngine.js`: flujo de `sendMessage()`, `trimHistory()`, `lockIfQuotaExceeded()`.
+- `src/transform/chatPayload.js`: `buildPayload()` y `normalizeAIResponse()`.
+- `api/chat.js`: serverless function con `process.env.GEMINI_API_KEY`.
+- `src/services/prompts.js`: `SYSTEM_INSTRUCTION` y objeto `PERSONAS`.
 
-### Prompts de los personajes alternativos
+---
 
-Definidos en el objeto `PERSONAS` de `src/services/prompts.js`:
+## 2. Generar tests unitarios para un módulo nuevo
 
-| Personaje    | Prompt resumido                                                                 |
-| ------------ | ------------------------------------------------------------------------------- |
-| **Ryan Castro** | "Cantante de música urbana que representa la cultura del barrio, dancehall y rap. Máximo 3 líneas. Sin markdown." |
-| **Maluma**      | "Cantante de reguetón y pop latino. Máximo 2 líneas."                            |
-| **J Balvin**    | "El príncipe del reguetón, géneros R&B, hip hop y dancehall. Máximo 3 líneas."   |
+### Contexto
+El proyecto usa **Vitest** como framework de testing y tiene 4 suites existentes en `test/`: `chatEngine.test.js`, `chatPayload.test.js`, `quotaSimulato.test.js` y `tokenEstimator.test.js`. La lógica pura se testea importando funciones directamente; los módulos con efectos externos (red/DOM) se mockean con `vi.mock()` y, para el tiempo, se usa `vi.useFakeTimers()`.
+
+### Objetivo
+Escribir un archivo de tests unitarios para el módulo `<nombre del módulo>` siguiendo el estilo del proyecto.
+
+### Restricciones
+- Usar `describe` / `it` / `expect` de Vitest.
+- Nombrar el archivo con el patrón `test/<modulo>.test.js`.
+- Cubrir casos borde: entradas vacías, `undefined`, límites y errores.
+- Si el módulo toca red o DOM, mockear con `vi.mock()` y resetear estado con `beforeEach`.
+- No agregar comentarios innecesarios; seguir el estilo de los tests existentes.
+
+### Evidencias
+- `test/chatEngine.test.js`: patrón de mock de red + fake timers.
+- `test/quotaSimulato.test.js`: patrón de aislamiento con `resetSessionUsage()` en `beforeEach`.
+- `test/tokenEstimator.test.js`: ejemplo de lógica pura con `expect(...).toBe(...)`.
+- `package.json`: script `"test": "vitest"`.
+
+
+
+## 3. Debuggear el manejo de errores del chat
+
+### Contexto
+El motor de chat (`src/engine/chatEngine.js`) maneja errores de la API: si la respuesta es HTTP 429 muestra un estado de reintento (`showRetryState`) y reenvía después de unos segundos; si el reintento falla o el error no es 429, muestra un mensaje de error (`showError`). La cuota simulada de tokens (`quotaSimulator.js`, límite 4000) bloquea el input/botón al agotarse.
+
+### Objetivo
+Detectar y corregir errores lógicos en el flujo de reintento y bloqueo por cuota del chat.
+
+### Restricciones
+- No romper la funcionalidad existente; los tests actuales deben seguir pasando.
+- Revisar el flujo completo: `sendMessage()` → `fetchGeminiAPI()` → manejo de 429 → `lockIfQuotaExceeded()`.
+- Si encontrás un bug, proponé el fix y los tests que lo cubran.
+
+### Evidencias
+- `src/engine/chatEngine.js`: líneas de manejo de 429, `errorMessageFor()` y `lockIfQuotaExceeded()`.
+- `src/services/quotaSimulator.js`: `SESSION_TOKEN_LIMIT = 4000` y `isSessionQuotaExceeded()`.
+- `test/chatEngine.test.js`: casos de 429 con `mockRejectedValueOnce`.
+- `src/services/geminiApi.js`: construcción del error con `status` y `retryAfterSeconds`.
+
+---
+
+## 4. Explicar el sistema de cuota de tokens
+
+### Contexto
+El chat tiene un **simulador de cuota** en modo free (`src/services/quotaSimulator.js`) con límite de 4000 tokens por sesión en memoria. Cada respuesta real de Gemini registra su consumo (`recordRealUsage`) y se muestra en pantalla el uso total/restante (`updateTokenUsage` en `src/ui/render.js`). También existe un estimador de tokens (`src/services/tokenEstimator.js`) que usa ~4 caracteres por token.
+
+### Objetivo
+Explicar cómo funciona el sistema de cuota de tokens, cómo se acumula el consumo, cuándo se bloquea el chat y cómo se reinicia al recargar la página.
+
+### Restricciones
+- Explicar en español, con ejemplos concretos.
+- Diferenciar el consumo real de Gemini (`usageMetadata`) del estimador local.
+- Indicar cómo probar el bloqueo sin gastar la cuota real (módulo `mockGeminiApi.js`).
+
+### Evidencias
+- `src/services/quotaSimulator.js`: `recordUsage()`, `getSessionUsage()`, `isSessionQuotaExceeded()`, `resetSessionUsage()`.
+- `src/engine/chatEngine.js`: llamadas a `recordRealUsage` y `updateTokenUsage`.
+- `src/services/tokenEstimator.js`: `estimateTokens()` con `Math.ceil(text.length / 4)`.
+- `src/services/mockGeminiApi.js`: simulación de 429 y conteo de tokens estimados.
 
 ---
 
